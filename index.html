@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NacmiTk Web App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      padding: 30px;
+    }
+    #main {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #0088cc;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <h2>Welcome to NacmiTk!</h2>
+    <p id="user">Loading...</p>
+    <p>Your Coin Balance: <strong id="coins">100</strong></p>
+    <p>Your Refer Link:</p>
+    <input type="text" value="https://t.me/NacmiTk_bot?start=USER_ID" id="refLink" readonly style="width:100%">
+    <button onclick="alert('Ad clicked! 1 coin added')">📢 Click Ad</button>
+  </div>
+
+  <script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+
+    // Set user info
+    const user = tg.initDataUnsafe.user;
+    document.getElementById("user").innerText = "👤 " + user.first_name;
+
+    // Replace USER_ID in refer link
+    document.getElementById("refLink").value = `https://t.me/NacmiTk_bot?start=${user.id}`;
+  </script>
+</body>
+</html>
